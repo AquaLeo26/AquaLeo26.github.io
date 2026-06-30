@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Account Sign Up | Aqua Leo Payment Processing Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="name">Aqua Leo</span><span class="dot"></span>
+      <span class="tag">We Make Payments Personal</span>
+    </a>
+    <a class="header-phone" href="tel:13302985552">Call <span>(330) 298-5552</span></a>
+  </div>
+</header>
+
+<section class="form-hero">
+  <div class="wrap">
+    <h1>Let's Get You Signed Up!</h1>
+    <p>Fill out the short form below so we can get your new account set up for you.</p>
+  </div>
+</section>
+
+<div class="form-shell">
+  <div class="form-card">
+    <form id="signupForm" action="https://formsubmit.co/aqualeo@aqualeo.net" method="POST" enctype="multipart/form-data">
+
+      <!-- FormSubmit settings -->
+      <input type="hidden" name="_subject" value="New Aqua Leo Sign-Up Application">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://aqualeo26.github.io/thankyou.html">
+      <!-- honeypot: hidden from people, catches bots -->
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+      <fieldset>
+        <legend>Business Information</legend>
+        <div class="grid">
+          <div class="field full">
+            <label for="legalName">Legal Name of Business or Organization</label>
+            <input type="text" id="legalName" name="Legal Name of Business or Organization">
+          </div>
+          <div class="field full">
+            <label for="dba">Business Name (DBA)</label>
+            <input type="text" id="dba" name="Business Name (DBA)">
+          </div>
+          <div class="field full">
+            <label for="street">Street Address</label>
+            <input type="text" id="street" name="Street Address">
+          </div>
+          <div class="field">
+            <label for="city">City</label>
+            <input type="text" id="city" name="City">
+          </div>
+          <div class="field">
+            <label for="state">State</label>
+            <input type="text" id="state" name="State">
+          </div>
+          <div class="field">
+            <label for="zip">Postal Code</label>
+            <input type="text" id="zip" name="Postal Code">
+          </div>
+          <div class="field">
+            <label for="website">Website</label>
+            <input type="url" id="website" name="Website" placeholder="https://">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Owner &amp; Contact</legend>
+        <div class="grid">
+          <div class="field full">
+            <label for="owner">Owner Full Name</label>
+            <input type="text" id="owner" name="Owner Full Name">
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="Email" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone <span class="req">*</span></label>
+            <input type="tel" id="phone" name="Phone" required>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Tax &amp; Identity</legend>
+        <div class="grid">
+          <div class="field">
+            <label for="ssn">Social Security Number</label>
+            <input type="text" id="ssn" name="Social Security Number" autocomplete="off" inputmode="numeric">
+          </div>
+          <div class="field">
+            <label for="ein">Business EIN</label>
+            <input type="text" id="ein" name="Business EIN" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="startYear">Business Start Year</label>
+            <input type="text" id="startYear" name="Business Start Year" inputmode="numeric" placeholder="e.g. 2018">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Documents</legend>
+        <p class="legend-note">Photos from your phone are fine &mdash; we automatically shrink large images so they send reliably. Accepted: JPG, PNG, PDF.</p>
+
+        <div class="field full">
+          <label for="dlInput">Signer Driver's License Image</label>
+          <div class="upload">
+            <input type="file" id="dlInput" name="Signer Drivers License" accept=".pdf,.jpg,.jpeg,.png,.gif,.doc,.docx,.xls,.csv">
+            <span class="filename" id="dlName"></span>
+          </div>
+        </div>
+
+        <div class="field full">
+          <label for="checkInput">Voided Check Image</label>
+          <div class="upload">
+            <input type="file" id="checkInput" name="Voided Check" accept=".pdf,.jpg,.jpeg,.png,.gif,.doc,.docx,.xls,.csv">
+            <span class="filename" id="checkName"></span>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Transaction Info</legend>
+        <div class="grid">
+          <div class="field">
+            <label for="avgTxn">Current average transaction amount</label>
+            <input type="text" id="avgTxn" name="Average Transaction Amount" inputmode="decimal" placeholder="$">
+          </div>
+          <div class="field">
+            <label for="highTxn">Highest transaction amount</label>
+            <input type="text" id="highTxn" name="Highest Transaction Amount" inputmode="decimal" placeholder="$">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Signature</legend>
+        <p class="legend-note">Sign in the box below using your mouse or finger.</p>
+        <div class="field full">
+          <label>Signer Signature</label>
+          <div class="sig-wrap">
+            <canvas id="sigCanvas" class="sig-pad"></canvas>
+            <div class="sig-bar">
+              <span class="hint">Draw your signature above</span>
+              <button type="button" class="btn-clear" id="sigClear">Clear</button>
+            </div>
+          </div>
+          <!-- the drawn signature is attached as signature.png on submit -->
+          <input type="file" id="sigFile" name="Signer Signature" class="visually-hidden" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;" tabindex="-1" aria-hidden="true">
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Your Aqua Leo Representative</legend>
+        <div class="field full">
+          <label for="rep">Name of your Aqua Leo Representative</label>
+          <input type="text" id="rep" name="Aqua Leo Representative">
+        </div>
+      </fieldset>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+        <div class="form-status" id="formStatus"></div>
+        <div class="secure-note">&#128274; Sent over a secure connection to Aqua Leo.</div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <span>&copy; Aqua Leo Payment Processing Solutions &middot; North Canton, Ohio</span>
+    <a href="tel:13302985552">(330) 298-5552</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- signature pad (vanilla, no third-party script) ---------- */
+  var canvas = document.getElementById('sigCanvas');
+  var ctx = canvas.getContext('2d');
+  var drawing = false, sigEmpty = true, lastX = 0, lastY = 0;
+
+  function sizeCanvas(){
+    var ratio = window.devicePixelRatio || 1;
+    var rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * ratio;
+    canvas.height = rect.height * ratio;
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    ctx.lineWidth = 2.2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = '#0A1F2B';
+  }
+  // size once layout settles
+  window.addEventListener('load', sizeCanvas);
+  sizeCanvas();
+
+  function pos(e){
+    var rect = canvas.getBoundingClientRect();
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  }
+  canvas.addEventListener('pointerdown', function(e){
+    drawing = true; sigEmpty = false;
+    var p = pos(e); lastX = p.x; lastY = p.y;
+    canvas.setPointerCapture(e.pointerId);
+  });
+  canvas.addEventListener('pointermove', function(e){
+    if(!drawing) return;
+    var p = pos(e);
+    ctx.beginPath(); ctx.moveTo(lastX, lastY); ctx.lineTo(p.x, p.y); ctx.stroke();
+    lastX = p.x; lastY = p.y;
+  });
+  function stop(){ drawing = false; }
+  canvas.addEventListener('pointerup', stop);
+  canvas.addEventListener('pointerleave', stop);
+  document.getElementById('sigClear').addEventListener('click', function(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    sigEmpty = true;
+  });
+
+  /* ---------- show chosen filenames ---------- */
+  function wireName(inputId, labelId){
+    var input = document.getElementById(inputId);
+    var out = document.getElementById(labelId);
+    input.addEventListener('change', function(){
+      out.textContent = input.files && input.files.length ? input.files[0].name : '';
+    });
+  }
+  wireName('dlInput', 'dlName');
+  wireName('checkInput', 'checkName');
+
+  /* ---------- shrink large images before sending ---------- */
+  function compressImage(file){
+    return new Promise(function(resolve){
+      if(!file || !file.type || file.type.indexOf('image/') !== 0){ resolve(file); return; } // PDFs etc. pass through
+      var img = new Image();
+      var url = URL.createObjectURL(file);
+      img.onload = function(){
+        URL.revokeObjectURL(url);
+        var maxDim = 1600, w = img.width, h = img.height;
+        var longest = Math.max(w, h);
+        if(longest > maxDim){ var s = maxDim / longest; w = Math.round(w * s); h = Math.round(h * s); }
+        var c = document.createElement('canvas');
+        c.width = w; c.height = h;
+        c.getContext('2d').drawImage(img, 0, 0, w, h);
+        c.toBlob(function(blob){
+          if(!blob){ resolve(file); return; }
+          var base = file.name.replace(/\.[^.]+$/, '');
+          resolve(new File([blob], base + '.jpg', { type: 'image/jpeg' }));
+        }, 'image/jpeg', 0.72);
+      };
+      img.onerror = function(){ URL.revokeObjectURL(url); resolve(file); }; // unsupported (e.g. HEIC) -> send original
+      img.src = url;
+    });
+  }
+
+  function setFile(input, file){
+    var dt = new DataTransfer();
+    dt.items.add(file);
+    input.files = dt.files;
+  }
+
+  function prepareImage(inputId){
+    var input = document.getElementById(inputId);
+    if(!input.files || !input.files.length) return Promise.resolve();
+    return compressImage(input.files[0]).then(function(f){ setFile(input, f); });
+  }
+
+  function prepareSignature(){
+    if(sigEmpty) return Promise.resolve();
+    return new Promise(function(resolve){
+      canvas.toBlob(function(blob){
+        if(blob) setFile(document.getElementById('sigFile'), new File([blob], 'signature.png', { type: 'image/png' }));
+        resolve();
+      }, 'image/png');
+    });
+  }
+
+  /* ---------- submit: prep files, then send ---------- */
+  var form = document.getElementById('signupForm');
+  var btn = document.getElementById('submitBtn');
+  var status = document.getElementById('formStatus');
+  var ready = false;
+
+  form.addEventListener('submit', function(e){
+    if(ready) return; // second pass: let the browser submit for real
+    e.preventDefault();
+    btn.disabled = true;
+    status.textContent = 'Preparing your documents…';
+
+    Promise.all([ prepareImage('dlInput'), prepareImage('checkInput'), prepareSignature() ])
+      .then(function(){
+        // guard against the 10MB total cap
+        var total = 0;
+        [document.getElementById('dlInput'), document.getElementById('checkInput'), document.getElementById('sigFile')]
+          .forEach(function(i){ if(i.files && i.files[0]) total += i.files[0].size; });
+        if(total > 9.5 * 1024 * 1024){
+          btn.disabled = false;
+          status.textContent = 'Your uploads are a bit large. Please use slightly smaller images or PDFs and try again.';
+          return;
+        }
+        status.textContent = 'Sending…';
+        ready = true;
+        form.submit();
+      })
+      .catch(function(){
+        // if anything goes wrong, send the originals rather than block the customer
+        ready = true;
+        form.submit();
+      });
+  });
+})();
+</script>
+
+</body>
+</html>
